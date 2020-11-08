@@ -1,0 +1,5 @@
+# roles/example/tasks/redhat.yml
+- name: Install tree
+  ansible.builtin.yum:
+    name: "tree"
+    state: present
