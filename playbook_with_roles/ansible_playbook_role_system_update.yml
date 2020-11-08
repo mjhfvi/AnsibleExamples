@@ -1,0 +1,8 @@
+# roles/example/tasks/main.yml
+- name: System Update for RHEL
+  import_tasks: playbook_yum_update.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: System Update for Debian
+  import_tasks: playbook_apt-get_update.yml
+  when: ansible_facts['os_family']|lower == 'debian'

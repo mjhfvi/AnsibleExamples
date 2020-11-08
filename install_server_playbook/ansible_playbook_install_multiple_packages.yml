@@ -1,0 +1,26 @@
+---
+- name: Playbook for Install Multiple the packages
+  hosts: Ubuntu_Server
+  remote_user: root
+  become: true 
+  tasks:
+  
+  - name: Install all the packages
+    apt: name={{ item }} 
+    state: installed
+    update_cache: yes
+    with_items:
+       - openjdk-8-jdk
+       - software-properties-common
+       - ansible
+       - zabbix-agent
+       - apt-transport-https
+       - ca-certificates
+       - curl
+       - python3
+       - python3-pip
+       - python3-setuptools
+       - virtualenv
+       - docker-ce
+       - docker-ce-cli
+       - containerd.io

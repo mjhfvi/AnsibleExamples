@@ -1,0 +1,21 @@
+---
+- name: Ansible Playbook Install Packer
+  remote_user: tzahi
+  become: true
+  tasks:
+
+  - name: Add Packer's official GPG key
+    shell: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+
+
+  - name: Add Specified Repository into Sources List and Run apt-get update
+    apt_repository:
+      repo:  "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      state: present
+      update_cache: yes
+      
+  - name: Installing Packer Package
+    apt:
+      name: packer
+      state: present
+      update_cache: yes

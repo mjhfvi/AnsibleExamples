@@ -1,0 +1,10 @@
+---
+- name: Tasks to download test file
+  hosts: Jenkins_Node
+  tasks:
+  
+    - name: Download 7Zip File
+      get_url:
+        url: https://www.7-zip.org/a/lzma1900.7z
+        dest: /home/tzahi
+        mode: '0777'

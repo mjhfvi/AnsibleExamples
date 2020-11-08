@@ -1,0 +1,9 @@
+---
+- name: Run the equivalent of "yum update" as a separate step
+  remote_user: root
+  become: true 
+  tasks:
+
+  - name: Run "yum update" 
+    yum:
+      update_only: yes

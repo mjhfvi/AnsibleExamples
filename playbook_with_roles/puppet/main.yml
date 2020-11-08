@@ -1,0 +1,16 @@
+- name: Download puppet-agent deb file
+  get_url:
+    url: https://apt.puppetlabs.com/puppet5-release-wheezy.deb
+    dest: /tmp/
+    mode: '0744'
+    
+- name: Install the puppet5-release-wheezy.deb Package
+  apt:
+    deb: /tmp/puppet5-release-wheezy.deb
+    
+- name: Install Puppet Agent Package
+  apt: 
+    name: puppet-agent 
+    state: latest 
+    update_cache: yes 
+    force_apt_get: yes

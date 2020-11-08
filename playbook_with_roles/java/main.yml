@@ -1,0 +1,4 @@
+- name: Update APT package manager repositories and installing openjdk-8-jdk
+  apt:
+    name: openjdk-8-jdk
+    update_cache: yes

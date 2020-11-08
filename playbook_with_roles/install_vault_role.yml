@@ -1,0 +1,6 @@
+---
+- name: Install vault role  
+  hosts: 192.168.50.118
+  become: true
+  roles:
+    - vault
