@@ -1,0 +1,6 @@
+[Group_Name]
+192.168.50.111 ansible_ssh_user=tzahi ansible_ssh_pass= ansible_become_pass=
+
+ansible_ssh_user: tzahi
+ansible_ssh_pass: 
+ansible_become_pass: 

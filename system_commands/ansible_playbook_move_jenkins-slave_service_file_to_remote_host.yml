@@ -1,0 +1,13 @@
+---
+- name: Move jenkins-slave Service File to Remote Host
+  hosts: Ubuntu_Server
+  become: true
+  tasks:
+
+  - name: Copy file with owner and permissions
+    copy:
+      src: /home/tzahi/jenkins-slave
+      dest: /etc/init.d/
+      owner: root
+      group: root
+      mode: '0777'

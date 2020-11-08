@@ -1,0 +1,10 @@
+---
+- name: Run the equivalent of "apt-get update" as a separate step
+  hosts: Ubuntu_Server
+  remote_user: root
+  become: true 
+  tasks:
+
+  - name: Run "apt-get update" 
+    apt:
+      update_cache: yes

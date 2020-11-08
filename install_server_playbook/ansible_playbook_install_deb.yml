@@ -1,0 +1,3 @@
+- name: Install a .deb package
+  apt:
+    deb: /tmp/mypackage.deb

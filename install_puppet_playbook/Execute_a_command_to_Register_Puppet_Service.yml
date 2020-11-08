@@ -1,0 +1,53 @@
+---
+- name: Installing Puppet Agent Service Playbook
+  hosts: all
+  become: true
+  tasks:
+
+  - name: Download puppet-agent deb File
+    get_url:
+      url: https://apt.puppetlabs.com/puppet5-release-wheezy.deb
+      dest: /tmp/
+      mode: '0744'
+    
+  - name: Installing The puppet5-release-wheezy.deb File
+    apt:
+    deb: /tmp/puppet5-release-wheezy.deb
+
+  - name: Update apt and install puppet-agent
+    apt: 
+      update_cache: yes 
+      name: puppet-agent
+      state: latest
+
+  - name: Create File puppet.conf
+    file:
+      path: /etc/puppetlabs/puppet/puppet.conf
+      state: touch
+
+  - name: Update puppet.conf File
+    lineinfile:
+      path: /etc/hosts
+      state: present
+      line: '192.168.50.96 puppet'
+      
+  - name: Update puppet.conf File
+    lineinfile:
+      path: /etc/puppetlabs/puppet/puppet.conf
+      state: present
+      line: "{{ item }}"
+    with_items:
+    - '[main]'
+    - 'certname = node00'
+    - 'server = puppet'
+    
+  - name: Starting The puppet Agent Service
+    systemd:
+      name: puppet
+      state: started
+      enabled: yes
+       masked: no
+
+  - name: Execute a command to Register Puppet Service
+    become: true
+    shell: sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true

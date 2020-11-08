@@ -1,0 +1,8 @@
+---
+- name: Install Ansible
+  hosts: node_ubuntu
+  become: true 
+  tasks:
+  
+- name: Update apt and install ansible
+  apt: update_cache=yes name=ansible state=latest

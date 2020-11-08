@@ -1,0 +1,13 @@
+---
+- name: Ansible Playbook Add Repository to source.list
+  hosts: ansible_client
+  remote_user: tzahi
+  become: true
+  tasks:
+
+
+  - name: Add Specified Repository into Sources List and Run apt-get update
+    apt_repository:
+      repo:  'deb https://pkg.jenkins.io/debian-stable binary/'
+      state: present
+      update_cache: yes

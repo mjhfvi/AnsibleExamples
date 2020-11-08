@@ -1,0 +1,5 @@
+- name: Starting The jenkins-slave Service
+  sysvinit:
+      name: jenkins-slave
+      state: started
+      enabled: yes

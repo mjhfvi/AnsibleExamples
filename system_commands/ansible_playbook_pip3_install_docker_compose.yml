@@ -1,0 +1,11 @@
+---
+- name: Playbook for Installing docker-compose with pip3
+  hosts: Ubuntu_Server
+  remote_user: root
+  become: true 
+  tasks:
+
+
+  - name: Install docker-compose Python Package
+    pip:
+      name: docker-compose

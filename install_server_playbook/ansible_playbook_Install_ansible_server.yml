@@ -1,0 +1,22 @@
+---
+- name: PlayBook To Install Ansible Server on Ubuntu 
+  hosts: ansible_client
+  remote_user: tzahi
+  become: true
+  tasks:
+
+  - name: Installing software-properties-common Package
+    apt:
+      name: software-properties-common
+      state: present
+      update_cache: yes
+        
+  - name: Add Ansible stable repository from PPA and install its signing key on Ubuntu target
+    apt_repository:
+      repo: ppa:ansible/ansible
+      
+  - name: Installing Ansible Package
+    apt:
+      name: ansible
+      state: present
+      update_cache: yes
