@@ -1,0 +1,12 @@
+---
+- name: Downloading the jar Agent
+  hosts: Ubuntu_Server
+  remote_user: root
+  become: true 
+  tasks:
+
+  - name: Downloading
+    get_url:
+      url: http://192.168.50.102:8080/jnlpJars/agent.jar
+      dest: /tmp/
+      mode: '0440'

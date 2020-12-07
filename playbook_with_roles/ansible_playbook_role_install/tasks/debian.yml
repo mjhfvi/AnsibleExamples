@@ -1,0 +1,5 @@
+# roles/example/tasks/debian.yml
+- name: Install tree
+  ansible.builtin.apt:
+    name: "tree"
+    state: present

@@ -1,0 +1,28 @@
+---
+- name: playbook-install-zabbix
+  hosts: ansible_client
+  remote_user: tzahi
+  become: true
+  tasks:
+
+  - name: Downloading the Zabbix Package
+    get_url:
+      url: https://repo.zabbix.com/zabbix/4.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.0-2+bionic_all.deb
+      dest: /tmp/
+      mode: '0440'
+
+  - name: Install The Zabbix .deb Package
+    apt:
+      deb: /tmp/zabbix-release_4.0-2+bionic_all.deb
+
+  - name: Installing Zabbix
+    apt:
+      name: zabbix-agent
+      state: present
+      update_cache: yes
+
+  - name: Starting The Zabbix Service
+    systemd:
+      name: jenkins
+      state: started
+      enabled: yes

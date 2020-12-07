@@ -1,0 +1,5 @@
+  - name: Starting The puppetserver Service
+    systemd:
+      name: puppetserver
+      state: started
+      enabled: yes

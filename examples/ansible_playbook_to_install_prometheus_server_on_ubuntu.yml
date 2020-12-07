@@ -1,0 +1,26 @@
+---
+- name: PlayBook To Install Prometheus Server on Ubuntu
+  hosts: prometheus_server
+  remote_user: tzahi
+  become: true
+  tasks:
+
+  - name: import the Prometheus apt key
+    apt_key:
+      url: https://s3-eu-west-1.amazonaws.com/deb.robustperception.io/41EFC99D.gpg
+      state: present
+    become: true
+
+  - name: Install all the Prometheus packages
+    package: "{{ item }}" 
+    with_items:
+       - prometheus
+       - prometheus-node-exporter
+       - prometheus-pushgateway
+       - prometheus-alertmanager
+
+  - name: Starting The Prometheus Service
+    systemd:
+      name: prometheus
+      state: started
+      enabled: yes

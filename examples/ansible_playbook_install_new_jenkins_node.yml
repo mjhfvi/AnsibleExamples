@@ -1,0 +1,84 @@
+---
+- name: Playbook for New Jenkins Node included  +Ansible +Zabbix +Python, pip +Docker, docker-compose
+  hosts: Ubuntu_Server
+  remote_user: root
+  become: true 
+  tasks:
+
+  - name: Add Docker GPG apt Key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+      
+  - name: Add specified repository into sources list
+    apt_repository:
+      repo:  'deb https://download.docker.com/linux/ubuntu xenial stable/'
+      state: present
+      update_cache: yes
+
+  - name: Downloading the Zabbix Package
+    get_url:
+      url: https://repo.zabbix.com/zabbix/4.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.0-2+bionic_all.deb
+      dest: /tmp/
+      mode: '0440'
+      
+  - name: Download jar File
+    get_url:
+      url: http://192.168.50.102:8080/jnlpJars/agent.jar
+      dest: /home/tzahi/
+      mode: '0440'
+      
+  - name: Copy jenkins-slave Service File
+    copy:
+      src: /home/tzahi/jenkins-slave
+      dest: /etc/init.d/
+      owner: root
+      group: root
+      mode: '0777'
+
+  - name: Install The Zabbix .deb Package
+    apt:
+      deb: /tmp/zabbix-release_4.0-2+bionic_all.deb
+      
+  - name: Install all the packages
+    package: "{{ item }}"
+    update_cache: true
+    with_items:
+       - openjdk-8-jdk
+       - software-properties-common
+       - ansible
+       - zabbix-agent
+       - apt-transport-https
+       - ca-certificates
+       - curl
+       - python3
+       - python3-pip
+       - python3-setuptools
+       - virtualenv
+       - docker-ce 
+       - docker-ce-cli 
+       - containerd.io
+
+  - name: Install docker-compose Python Package
+    pip:
+      name: docker-compose
+      
+  - name: Copy Zabbix.conf File
+    copy:
+      src: /home/tzahi/zabbix_agentd.conf
+      dest: /etc/zabbix/
+      owner: root
+      group: root
+      mode: '0644'
+
+- name: Starting The jenkins-slave Service
+  sysvinit:
+      name: jenkins-slave
+      state: started
+      enabled: yes
+
+  - name: Starting The Zabbix Service
+    systemd:
+      name: Zabbix
+      state: started
+      enabled: yes
