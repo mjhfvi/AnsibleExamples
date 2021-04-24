@@ -26,16 +26,12 @@
 
   - name: Update APT and Install Hashicorp Packages
     apt:
-      update_cache: yes
-      state: latest
       pkg:
       - consul
       - nomad
 
   - name: Update APT and Install docker
     apt:  
-      update_cache: yes
-      state: latest 
       pkg:
       - docker
       
@@ -50,10 +46,6 @@
 
   - name: Download Nomad Job File
     shell: wget https://raw.githubusercontent.com/mjhfvi/Ansible-Examples/main/aws/nginx.nomad  
-    args:
-      warn: false
 
   - name: Run Nomad Job File
     shell: nomad run nginx.nomad 
-    args:
-      warn: false
