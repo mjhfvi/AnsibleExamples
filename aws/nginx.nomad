@@ -2,17 +2,16 @@
 # run with nomad run nginx.nomad
 
 
+# Nginx Job for Nomad, Source: https://stackoverflow.com/questions/42965004/how-would-you-use-hashicorps-nomad-template-stanza-to-generate-an-nginx-confi
+# run with nomad run nginx.nomad
+
+
 job "nginx" {
   datacenters = ["dc1"]
   
   type = "service"
   
   group "nginx" {
-	network {
-      port "http" {
-        static = 8080
-        }
-	  }  
     count = 1
     
     task "nginx" {
@@ -33,8 +32,15 @@ job "nginx" {
         destination   = "new/default.conf"
         change_mode   = "restart"
       }
-
+      
+      resources {
+        network {
+          mbits = 10
+          port "nginx" {
+            static = 8080
+          }
+        }
+      }
     }
   }
 }
-
