@@ -48,7 +48,9 @@
      name: nomad
      state: started
 
-  - name: Run Nomad Job File
-    shell: nomad run nginx.nomad
-    args:
-      warn: false
+- name: Create job
+  community.general.nomad_job:
+    host: localhost
+    state: present
+    content: nginx.nomad
+    timeout: 120
