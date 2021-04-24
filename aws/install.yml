@@ -1,5 +1,5 @@
 ---
-- name: Installing Consul & Nomad Playbook
+- name: Installing Docker, Nomad, Consul Playbook
   hosts: all
   remote_user: ubuntu
   become: true
