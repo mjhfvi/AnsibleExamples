@@ -15,12 +15,12 @@
  #     name: "*"
  #     state: latest
 
-  - name: Add Hashicorp official GPG key
+  - name: Add Hashicorp Official GPG key
     shell: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
     args:
       warn: false
 
-  - name: Add Docker GPG apt Key
+  - name: Add Docker GPG Key
     apt_key:
       url: https://download.docker.com/linux/ubuntu/gpg
       state: present
