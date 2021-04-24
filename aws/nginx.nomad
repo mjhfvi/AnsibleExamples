@@ -2,10 +2,6 @@
 # run with nomad run nginx.nomad
 
 
-# Nginx Job for Nomad, Source: https://stackoverflow.com/questions/42965004/how-would-you-use-hashicorps-nomad-template-stanza-to-generate-an-nginx-confi
-# run with nomad run nginx.nomad
-
-
 job "nginx" {
   datacenters = ["dc1"]
   
