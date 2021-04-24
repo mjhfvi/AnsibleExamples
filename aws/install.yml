@@ -50,9 +50,6 @@
      name: nomad
      state: started
 
-  - name: Create job
-    community.general.nomad_job:
-      host: localhost
-      state: present
-      content: nginx.nomad
-      timeout: 120
+  - name: nomad job
+    shell: nomad run nginx.nomad
+    no_log: true
