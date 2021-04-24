@@ -60,9 +60,9 @@
      name: nomad
      state: started
 
-- name: Pause for 5 seconds
-  pause:
-    seconds: 5
+  - name: Pause for 5 seconds
+    pause:
+      seconds: 5
 
   - name: nomad job
     shell: nomad run nginx.nomad
