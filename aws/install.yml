@@ -31,6 +31,10 @@
       - nomad
       - docker
 
+  - name: pull an image
+    docker_image:
+      name: nginx
+    
   - name: Start nomad Service 
     ansible.builtin.service:
      name: nomad
