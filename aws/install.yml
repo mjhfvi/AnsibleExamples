@@ -11,7 +11,7 @@
  #     state: latest
 
   - name: Add Hashicorp official GPG key
-    shell: wget https://raw.githubusercontent.com/mjhfvi/Ansible-Examples/main/aws/nginx.nomad
+    shell: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
     args:
       warn: false
 
