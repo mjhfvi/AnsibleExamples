@@ -52,5 +52,4 @@
 
   - name: nomad job
     shell: nomad run nginx.nomad
-    no_log: true
     ignore_errors: True
