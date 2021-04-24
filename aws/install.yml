@@ -50,3 +50,5 @@
 
   - name: Run Nomad Job File
     shell: nomad run nginx.nomad
+    args:
+      warn: false
