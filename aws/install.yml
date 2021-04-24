@@ -11,10 +11,15 @@
  #     state: latest
 
   - name: Add Hashicorp official GPG key
-    shell: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+    shell: wget https://raw.githubusercontent.com/mjhfvi/Ansible-Examples/main/aws/nginx.nomad
     args:
       warn: false
 
+  - name: Download Nomad Job File
+    shell: wget https://raw.githubusercontent.com/mjhfvi/Ansible-Examples/main/aws/nginx.nomad
+    args:
+      warn: false
+      
   - name: Add Hashicorp Repository to APT Sources
     shell: "echo deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main > /etc/apt/sources.list.d/hashicorp.list"
 
@@ -24,35 +29,24 @@
     apt:
       update_cache: yes
 
-  - name: Update APT and Install Hashicorp Packages
+  - name: Update APT and Install Hashicorp Docker Packages 
     apt:
       pkg:
       - consul
       - nomad
-
-  - name: Update APT and Install docker
-    apt:  
-      pkg:
       - docker
       - python3
       - python3-pip
-  
+ 
   - name: Install Docker Module for Python
     pip:
       name: 
       - docker-py
-        
-  - name: pull an image
-    docker_image:
-      name: nginx
     
   - name: Start nomad Service 
     ansible.builtin.service:
      name: nomad
      state: started
 
-  - name: Download Nomad Job File
-    shell: wget https://raw.githubusercontent.com/mjhfvi/Ansible-Examples/main/aws/nginx.nomad  
-
   - name: Run Nomad Job File
-    shell: nomad run nginx.nomad 
+    shell: nomad run nginx.nomad
