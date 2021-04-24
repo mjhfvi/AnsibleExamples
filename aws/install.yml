@@ -30,7 +30,11 @@
       - consul
       - nomad
       - docker
-
+  - name: Start service httpd, if not started
+    ansible.builtin.service:
+     name: nomad
+      state: started
+      
   - name: Download Nomad Job File
     shell: wget https://raw.githubusercontent.com/mjhfvi/Ansible-Examples/main/aws/nginx.nomad  
     args:
