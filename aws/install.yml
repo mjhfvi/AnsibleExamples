@@ -30,6 +30,3 @@
       - consul
       - nomad
       - docker
-      
-  - name: Setup Nomad
-    shell: nomad run nginx.nomad
