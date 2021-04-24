@@ -1,0 +1,35 @@
+---
+- name: Installing Consul & Nomad Playbook
+  hosts: all
+  remote_user: ubuntu
+  become: true
+  tasks:
+
+ # - name: Update all packages to their latest version
+ #   apt:
+ #     name: "*"
+ #     state: latest
+
+  - name: Add Hashicorp official GPG key
+    shell: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+    args:
+      warn: false
+
+  - name: Add Hashicorp Repository to APT Sources
+    shell: "echo deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main > /etc/apt/sources.list.d/hashicorp.list"
+
+  - name: Update APT cache
+    become: true
+    become_user: root
+    apt:
+      update_cache: yes
+
+  - name: Install Hashicorp Packages
+    apt:
+      pkg:
+      - consul
+      - nomad
+      - docker
+      
+  - name: Setup Nomad
+    shell: nomad run nginx.nomad
