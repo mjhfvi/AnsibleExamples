@@ -1,14 +1,16 @@
+## ansible-playbook install.yml -i localhost
 ---
 - name: Installing Docker, Nomad, Consul Playbook
   hosts: all
+  gather_facts: no    # important
   remote_user: ubuntu
   become: true
   tasks:
+  - name: Wait for system to become reachable
+    wait_for_connection:
 
-
-
-
-
+  - name: Gather facts for the first time
+    setup:
 
  # - name: Update all packages to their latest version
  #   apt:
