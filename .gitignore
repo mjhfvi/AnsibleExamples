@@ -4,3 +4,4 @@ ansible_hosts_inventory_example.txt
 
 
 
+aws/variables.tf
