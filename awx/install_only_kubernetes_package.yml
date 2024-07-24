@@ -1,0 +1,11 @@
+---
+- name: PlayBook To Install Kubernetes
+  hosts: all
+  tasks:
+  
+  - name: Install all the packages
+    apt:
+      pkg:
+      - kubeadm 
+      - kubelet 
+      - kubectl

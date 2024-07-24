@@ -1,0 +1,9 @@
+---
+- name: Installing 7zip Software 
+  hosts: all
+  tasks:
+  
+  - name: Install git
+    win_chocolatey:
+      name: git
+      state: present

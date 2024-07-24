@@ -1,0 +1,7 @@
+---
+- name: Playbook to pull an Ubuntu Image For Docker
+  hosts: all
+  tasks:
+
+  - name: pull an ubuntu image to local docker
+    shell: docker pull ubuntu

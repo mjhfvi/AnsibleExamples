@@ -1,0 +1,10 @@
+---
+- name: Ansible Playbook Install Terraform
+  hosts: all
+  tasks:
+   
+  - name: Installing Terraform Package
+    apt:
+      name: terraform
+      state: present
+      update_cache: yes

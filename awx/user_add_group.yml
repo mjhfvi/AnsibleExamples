@@ -1,0 +1,9 @@
+---
+- name: Add the user 'tzahi' to group of 'sudo'
+  hosts: all
+  user:
+    name=tzahi
+    groups=sudo, admin
+    append=yes
+    state=present
+    createhome=yes

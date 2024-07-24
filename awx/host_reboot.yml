@@ -1,0 +1,8 @@
+---
+- name: Reboot Server Playbook
+  hosts: all
+  tasks:
+
+  - name: Reboot Command
+    reboot:
+      reboot_timeout: 3600

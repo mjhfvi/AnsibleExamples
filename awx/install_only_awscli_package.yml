@@ -1,0 +1,7 @@
+---
+- name: Install AWS command line interface
+  hosts: all
+  tasks:
+
+  pip:
+    name: awscli

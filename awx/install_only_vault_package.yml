@@ -1,0 +1,10 @@
+---
+- name: Ansible Playbook Install Vault
+  hosts: all
+  tasks:
+
+  - name: Installing Vault Package
+    apt:
+      name: vault
+      state: present
+      update_cache: yes

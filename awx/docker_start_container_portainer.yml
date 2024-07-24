@@ -1,0 +1,10 @@
+---
+- name: Playbook to pull an portainer Image For Docker
+  hosts: all
+  tasks:
+
+  - name: Create a portainer Container
+    shell: docker run -d -p 9000:9000 --name portainer_server portainer/portainer
+
+  - name: start a portainer Container
+    shell: docker container start portainer_server

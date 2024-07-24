@@ -1,0 +1,16 @@
+---
+- name: Add the user 'tzahi' to group of 'sudo'
+  hosts: all
+  become: yes
+  tasks:
+
+  - name: Add user tzahi to sudo group
+    shell: usermod -aG sudo tzahi
+    
+  - name: Allow 'tzahi' group to have passwordless sudo
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%tzahi'
+      line: '%tzahi   ALL=(ALL:ALL) ALL'
+      validate: visudo -cf %s

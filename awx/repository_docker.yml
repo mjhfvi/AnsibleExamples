@@ -1,0 +1,14 @@
+---
+- name: Ansible Playbook Add Repository Docker
+  hosts: all
+  tasks:
+  
+  - name: Add Docker official GPG apt Key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+      
+  - name: Add Docker Repository into Sources List and apt-get update
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu focal stable
+      state: present

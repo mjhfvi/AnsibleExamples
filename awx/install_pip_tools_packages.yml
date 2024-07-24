@@ -1,0 +1,19 @@
+---
+- name: PlayBook To Install pip Tools
+  hosts: all
+  tasks:
+
+  - name: Install aws cli tool python with pip3
+    pip:
+      name: awscli
+      executable: pip3
+      
+  - name: Install docker docker tool python with pip3
+    pip:
+      name: docker
+      executable: pip3
+      
+  - name: Install setuptools tool python with pip3
+    pip:
+      name: setuptools
+      executable: pip3

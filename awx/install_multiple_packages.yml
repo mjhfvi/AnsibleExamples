@@ -1,0 +1,11 @@
+---
+- name: Playbook for Install Multiple the packages
+  hosts: all
+  tasks:
+  
+  - name: Install a list of packages
+    apt:
+      pkg:
+      - software-properties-common
+      - python
+      - python3-pip

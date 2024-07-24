@@ -1,0 +1,7 @@
+---
+- name: Playbook to Install Community Collection 
+  hosts: all
+  tasks:
+
+  - name: Install Community Collection run command
+    shell: ansible-galaxy collection install community.general

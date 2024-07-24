@@ -1,0 +1,7 @@
+---
+- name: Playbook to pull an portainer Image For Docker
+  hosts: all
+  tasks:
+
+  - name: pull an portainer image to local docker
+    shell: docker pull portainer/portainer
